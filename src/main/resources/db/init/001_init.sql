@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS shelf (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(50) NOT NULL UNIQUE,
+    capacity INTEGER NOT NULL,
+    current_load INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS product (
+    id SERIAL PRIMARY KEY,
+    sku VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    quantity INTEGER NOT NULL,
+    shelf_id INTEGER REFERENCES shelf(id)
+);
+
+CREATE TABLE IF NOT EXISTS shipment (
+    id SERIAL PRIMARY KEY,
+    shipment_code VARCHAR(100) NOT NULL UNIQUE,
+    destination VARCHAR(255) NOT NULL,
+    priority INTEGER NOT NULL DEFAULT 0,
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS stock_log (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES product(id),
+    action VARCHAR(50) NOT NULL,
+    quantity_change INTEGER NOT NULL,
+    log_time TIMESTAMP NOT NULL DEFAULT NOW()
+);
