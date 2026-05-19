@@ -1,5 +1,7 @@
 package com.smartwarehouse.datastructure;
 
+import java.util.Objects;
+
 public class CustomHashTable<K, V> {
 
     private static final int DEFAULT_CAPACITY = 16;
@@ -21,7 +23,7 @@ public class CustomHashTable<K, V> {
 
         Entry<K, V> previous = null;
         while (current != null) {
-            if (current.key.equals(key)) {
+            if (Objects.equals(current.key, key)) {
                 current.value = value;
                 return;
             }
@@ -35,7 +37,7 @@ public class CustomHashTable<K, V> {
         int index = indexFor(key);
         Entry<K, V> current = table[index];
         while (current != null) {
-            if (current.key.equals(key)) {
+            if (Objects.equals(current.key, key)) {
                 return current.value;
             }
             current = current.next;
@@ -44,6 +46,9 @@ public class CustomHashTable<K, V> {
     }
 
     private int indexFor(K key) {
+        if (key == null) {
+            return 0;
+        }
         return Math.abs(key.hashCode()) % table.length;
     }
 
