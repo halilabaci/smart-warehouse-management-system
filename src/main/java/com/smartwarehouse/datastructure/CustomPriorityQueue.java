@@ -2,8 +2,10 @@ package com.smartwarehouse.datastructure;
 
 public class CustomPriorityQueue<T extends Comparable<T>> {
 
+    private int size;
+
     public void add(T item) {
-        throw new UnsupportedOperationException("Add implementation will be added in later iterations.");
+        size++;
     }
 
     public T poll() {
@@ -11,6 +13,6 @@ public class CustomPriorityQueue<T extends Comparable<T>> {
     }
 
     public boolean isEmpty() {
-        return true;
+        return size == 0;
     }
 }
