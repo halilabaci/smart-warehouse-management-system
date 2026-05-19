@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16
+    container_name: smart-warehouse-db
+    environment:
+      POSTGRES_DB: smart_warehouse
+      POSTGRES_USER: warehouse_user
+      POSTGRES_PASSWORD: warehouse_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/db/init:/docker-entrypoint-initdb.d
+
+  app:
+    build: .
+    container_name: smart-warehouse-app
+    depends_on:
+      - db
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/smart_warehouse
+      DB_USER: warehouse_user
+      DB_PASSWORD: warehouse_pass
+    command: ["java", "-jar", "app.jar"]
+
+volumes:
+  postgres_data:
