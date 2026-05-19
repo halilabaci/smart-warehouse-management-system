@@ -18,5 +18,6 @@ CREATE TABLE shipments (
 CREATE TABLE warehouse_paths (
     from_location VARCHAR(50),
     to_location VARCHAR(50),
-    distance INTEGER
+    distance INTEGER,
+    PRIMARY KEY (from_location, to_location)
 );
