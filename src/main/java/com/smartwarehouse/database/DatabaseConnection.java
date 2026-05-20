@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public final class DatabaseConnection {
 
-    private static final String DEFAULT_URL = "jdbc:postgresql://localhost:5432/smart_warehouse";
+    private static final String DEFAULT_URL = "jdbc:postgresql://localhost:5433/smart_warehouse";
     private static final String DEFAULT_USER = "warehouse_user";
     private static final String DEFAULT_PASSWORD = "warehouse_pass";
 

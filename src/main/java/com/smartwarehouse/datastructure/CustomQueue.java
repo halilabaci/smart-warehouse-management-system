@@ -1,5 +1,7 @@
 package com.smartwarehouse.datastructure;
 
+import java.util.List;
+
 public class CustomQueue<T> {
 
     private final CustomLinkedList<T> elements = new CustomLinkedList<>();
@@ -9,10 +11,25 @@ public class CustomQueue<T> {
     }
 
     public T dequeue() {
-        throw new UnsupportedOperationException("Dequeue implementation will be added in later iterations.");
+        return elements.removeFirst();
+    }
+
+    public T peek() {
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(0);
     }
 
     public boolean isEmpty() {
-        return elements.size() == 0;
+        return elements.isEmpty();
+    }
+
+    public int size() {
+        return elements.size();
+    }
+
+    public List<T> toList() {
+        return elements.toList();
     }
 }

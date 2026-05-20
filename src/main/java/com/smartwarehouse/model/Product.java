@@ -1,37 +1,37 @@
 package com.smartwarehouse.model;
 
-public class Product {
-    private int id;
-    private String sku;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public class Product implements Comparable<Product> {
+    private int productId;
     private String name;
-    private int quantity;
-    private Integer shelfId;
+    private String category;
+    private BigDecimal price;
+    private int stockQuantity;
+    private LocalDate expirationDate;
+    private String shelfId;
 
     public Product() {
     }
 
-    public Product(int id, String sku, String name, int quantity, Integer shelfId) {
-        this.id = id;
-        this.sku = sku;
+    public Product(int productId, String name, String category, BigDecimal price, int stockQuantity,
+                   LocalDate expirationDate, String shelfId) {
+        this.productId = productId;
         this.name = name;
-        this.quantity = quantity;
+        this.category = category;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.expirationDate = expirationDate;
         this.shelfId = shelfId;
     }
 
-    public int getId() {
-        return id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -42,19 +42,59 @@ public class Product {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getCategory() {
+        return category;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public Integer getShelfId() {
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public String getShelfId() {
         return shelfId;
     }
 
-    public void setShelfId(Integer shelfId) {
+    public void setShelfId(String shelfId) {
         this.shelfId = shelfId;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return Integer.compare(productId, other.productId);
+    }
+
+    @Override
+    public String toString() {
+        return "ID=" + productId
+            + ", name='" + name + '\''
+            + ", category='" + category + '\''
+            + ", price=" + price
+            + ", stock=" + stockQuantity
+            + ", expiration=" + (expirationDate == null ? "-" : expirationDate)
+            + ", shelf='" + shelfId + '\'';
     }
 }

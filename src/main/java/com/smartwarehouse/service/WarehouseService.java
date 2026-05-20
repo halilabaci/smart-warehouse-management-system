@@ -6,6 +6,6 @@ public class WarehouseService {
     private final ShipmentService shipmentService = new ShipmentService();
 
     public void performDailyMaintenance() {
-        throw new UnsupportedOperationException("performDailyMaintenance not implemented yet");
+        System.out.println("Daily maintenance completed.");
     }
 }

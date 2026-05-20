@@ -4,21 +4,30 @@ import com.smartwarehouse.database.ProductDAO;
 import com.smartwarehouse.model.Product;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public class ProductService {
 
     private final ProductDAO productDAO = new ProductDAO();
 
-    public Optional<Product> getProduct(int id) throws SQLException {
-        return productDAO.findById(id);
+    public void addProduct(Product product) throws SQLException {
+        productDAO.addProduct(product);
     }
 
-    public void createOrUpdate(Product product) throws SQLException {
-        productDAO.save(product);
+    public Optional<Product> getProduct(int productId) throws SQLException {
+        return productDAO.getProductById(productId);
     }
 
-    public void removeProduct(int id) throws SQLException {
-        productDAO.delete(id);
+    public List<Product> getAllProducts() throws SQLException {
+        return productDAO.getAllProducts();
+    }
+
+    public boolean updateProduct(Product product) throws SQLException {
+        return productDAO.updateProduct(product);
+    }
+
+    public boolean removeProduct(int productId) throws SQLException {
+        return productDAO.deleteProduct(productId);
     }
 }

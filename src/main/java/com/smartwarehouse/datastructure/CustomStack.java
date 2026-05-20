@@ -5,14 +5,21 @@ public class CustomStack<T> {
     private final CustomLinkedList<T> elements = new CustomLinkedList<>();
 
     public void push(T value) {
-        elements.add(value);
+        elements.addFirst(value);
     }
 
     public T pop() {
-        throw new UnsupportedOperationException("Pop implementation will be added in later iterations.");
+        return elements.removeFirst();
+    }
+
+    public T peek() {
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return elements.get(0);
     }
 
     public boolean isEmpty() {
-        return elements.size() == 0;
+        return elements.isEmpty();
     }
 }
