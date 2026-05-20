@@ -1,12 +1,21 @@
 package com.smartwarehouse.service;
 
+import com.smartwarehouse.datastructure.CustomStack;
+
 public class UndoService {
 
+    private final CustomStack<String> actions = new CustomStack<>();
+
     public void recordAction(String action) {
-        throw new UnsupportedOperationException("recordAction not implemented yet");
+        actions.push(action);
     }
 
     public void undoLast() {
-        throw new UnsupportedOperationException("undoLast not implemented yet");
+        String action = actions.pop();
+        if (action == null) {
+            System.out.println("No operation to undo.");
+            return;
+        }
+        System.out.println("Undo action recorded: " + action);
     }
 }

@@ -23,3 +23,14 @@
 hs_err_pid*
 replay_pid*
 target/
+build-classes/
+
+# SUNUM REHBERLERİ (Kişisel kullanım - Repo'ya push'lanmayacak)
+SUNUM_REHBERI.md
+VERİ_YAPILARI_DETAYLI_REHBER.md
+VERİTABANI_GÖRÜNTÜLEME.md
+HOCA_SORULARI_VE_CEVAPLARI.md
+README_SUNUM_HAZIRLIK.md
+SISTEM_AKIŞI_VE_MENU_REHBERI.md
+START.bat
+start.sh

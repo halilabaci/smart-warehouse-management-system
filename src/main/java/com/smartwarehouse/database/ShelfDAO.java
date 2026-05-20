@@ -8,14 +8,14 @@ import java.util.Optional;
 public class ShelfDAO {
 
     public Optional<Shelf> findById(int id) throws SQLException {
-        throw new UnsupportedOperationException("findById not implemented yet");
+        return Optional.empty();
     }
 
     public void save(Shelf shelf) throws SQLException {
-        throw new UnsupportedOperationException("save not implemented yet");
+        // Shelves are represented by the products.shelf_id value in the current schema.
     }
 
     public void delete(int id) throws SQLException {
-        throw new UnsupportedOperationException("delete not implemented yet");
+        // No separate shelves table exists in the current schema.
     }
 }

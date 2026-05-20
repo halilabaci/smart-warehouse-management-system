@@ -2,10 +2,9 @@ package com.smartwarehouse.model;
 
 import java.time.LocalDateTime;
 
-public class Shipment {
-    private int id;
-    private String shipmentCode;
-    private String destination;
+public class Shipment implements Comparable<Shipment> {
+    private int shipmentId;
+    private String customerName;
     private int priority;
     private String status;
     private LocalDateTime createdAt;
@@ -13,37 +12,28 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(int id, String shipmentCode, String destination, int priority, String status, LocalDateTime createdAt) {
-        this.id = id;
-        this.shipmentCode = shipmentCode;
-        this.destination = destination;
+    public Shipment(int shipmentId, String customerName, int priority, String status, LocalDateTime createdAt) {
+        this.shipmentId = shipmentId;
+        this.customerName = customerName;
         this.priority = priority;
         this.status = status;
         this.createdAt = createdAt;
     }
 
-    public int getId() {
-        return id;
+    public int getShipmentId() {
+        return shipmentId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShipmentId(int shipmentId) {
+        this.shipmentId = shipmentId;
     }
 
-    public String getShipmentCode() {
-        return shipmentCode;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setShipmentCode(String shipmentCode) {
-        this.shipmentCode = shipmentCode;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public int getPriority() {
@@ -68,5 +58,32 @@ public class Shipment {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public int compareTo(Shipment other) {
+        int priorityComparison = Integer.compare(priority, other.priority);
+        if (priorityComparison != 0) {
+            return priorityComparison;
+        }
+        if (createdAt == null && other.createdAt == null) {
+            return 0;
+        }
+        if (createdAt == null) {
+            return -1;
+        }
+        if (other.createdAt == null) {
+            return 1;
+        }
+        return other.createdAt.compareTo(createdAt);
+    }
+
+    @Override
+    public String toString() {
+        return "ID=" + shipmentId
+            + ", customer='" + customerName + '\''
+            + ", priority=" + priority
+            + ", status='" + status + '\''
+            + ", createdAt=" + createdAt;
     }
 }

@@ -59,4 +59,12 @@ public class StockLog {
     public void setLogTime(LocalDateTime logTime) {
         this.logTime = logTime;
     }
+
+    @Override
+    public String toString() {
+        return "productId=" + productId
+            + ", action='" + action + '\''
+            + ", quantityChange=" + quantityChange
+            + ", logTime=" + logTime;
+    }
 }
