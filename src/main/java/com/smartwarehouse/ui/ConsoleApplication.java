@@ -114,11 +114,12 @@ public class ConsoleApplication {
                     case "7" -> viewWaitingQueue();
                     case "8" -> addUrgentShipment();
                     case "9" -> processUrgentShipment();
-                    case "10" -> displaySortedProducts();
-                    case "11" -> findShortestRoute();
-                    case "12" -> undoLastOperation();
-                    case "13" -> viewStockLogs();
-                    case "14" -> searchProductById();
+                    case "10" -> viewWaitingUrgentShipments();
+                    case "11" -> displaySortedProducts();
+                    case "12" -> findShortestRoute();
+                    case "13" -> undoLastOperation();
+                    case "14" -> viewStockLogs();
+                    case "15" -> searchProductById();
                     case "0" -> {
                         System.out.println("Goodbye.");
                         return;
@@ -145,11 +146,12 @@ public class ConsoleApplication {
         System.out.println("7. View Waiting Queue");
         System.out.println("8. Add Urgent Shipment");
         System.out.println("9. Process Urgent Shipment");
-        System.out.println("10. Display Sorted Products");
-        System.out.println("11. Find Shortest Route");
-        System.out.println("12. Undo Last Operation");
-        System.out.println("13. View Stock Logs");
-        System.out.println("14. Search Product By ID");
+        System.out.println("10. View Waiting Urgent Shipments");
+        System.out.println("11. Display Sorted Products");
+        System.out.println("12. Find Shortest Route");
+        System.out.println("13. Undo Last Operation");
+        System.out.println("14. View Stock Logs");
+        System.out.println("15. Search Product By ID");
         System.out.println("0. Exit");
     }
 
@@ -268,6 +270,15 @@ public class ConsoleApplication {
         shipmentDAO.updateStatus(shipment.getShipmentId(), "PROCESSED");
         shipment.setStatus("PROCESSED");
         System.out.println("Processed urgent shipment: " + shipment);
+    }
+
+    private void viewWaitingUrgentShipments() {
+        if (urgentShipmentQueue.isEmpty()) {
+            System.out.println("Urgent shipment queue is empty.");
+            return;
+        }
+        System.out.println("--- Waiting Urgent Shipments (Priority Order) ---");
+        urgentShipmentQueue.toList().forEach(System.out::println);
     }
 
     private void displaySortedProducts() throws SQLException {
